@@ -1,0 +1,29 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-users_roles-table
+      author: lora_nazarenko
+      preConditions:
+        - onFail: MARK_RAN
+        - not:
+            - tableExists:
+                tableName: users_roles
+      changes:
+        - createTable:
+            tableName: users_roles
+            columns:
+              - column:
+                  name: user_id
+                  type: bigint
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+                    foreignKeyName: fk_users_roles_users
+                    references: users(id)
+              - column:
+                  name: role_id
+                  type: bigint
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+                    foreignKeyName: fk_users_roles_roles
+                    references: roles(id)
