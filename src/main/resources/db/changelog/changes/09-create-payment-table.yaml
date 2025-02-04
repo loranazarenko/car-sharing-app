@@ -1,0 +1,50 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-payments-table
+      author: nazarenko_larysa
+      changes:
+        - createTable:
+            tableName: payments
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: status
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: type
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: rental_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+              - column:
+                  name: session_url
+                  type: text
+                  constraints:
+                    nullable: false
+              - column:
+                  name: session_id
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: amount_to_pay
+                  type: decimal(19,2)
+                  constraints:
+                    nullable: false
+        - addForeignKeyConstraint:
+            baseTableName: payments
+            baseColumnNames: rental_id
+            constraintName: fk_payments_rental
+            referencedTableName: rentals
+            referencedColumnNames: id

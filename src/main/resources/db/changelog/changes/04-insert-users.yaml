@@ -1,0 +1,53 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: nazarenko_larysa
+      changes:
+        - insert:
+            tableName: users
+            columns:
+              - column:
+                  name: id
+                  value: 1
+              - column:
+                  name: email
+                  value: admin@com.net
+              - column:
+                  name: password
+                  value: "$2a$12$sD0TdJA7QCPWt4UC2qBN8uTe8qftclSa5Aphzy3HQEXUIG6BUsABG"  #1234
+              - column:
+                  name: first_name
+                  value: Admin
+              - column:
+                  name: last_name
+                  value: Admin
+              - column:
+                  name: telegram_chat_id
+                  value: 123
+  - changeSet:
+      id: 2
+      author: nazarenko_larysa
+      changes:
+        - insert:
+            tableName: users
+            columns:
+              - column:
+                  name: id
+                  value: 2
+              - column:
+                  name: email
+                  value: alice@com.net
+              - column:
+                  name: password
+                  value: "$2a$12$sD0TdJA7QCPWt4UC2qBN8uTe8qftclSa5Aphzy3HQEXUIG6BUsABG"    #1234
+              - column:
+                  name: first_name
+                  value: Alice
+              - column:
+                  name: last_name
+                  value: Alice
+              - column:
+                  name: telegram_chat_id
+                  value: 456
+
+
