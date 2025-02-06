@@ -1,13 +1,11 @@
 package carsharingapp;
 
-//import org.junit.jupiter.api.Test;
-//import org.springframework.boot.test.context.SpringBootTest;
+import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
 
-//@SpringBootTest
+@SpringBootTest
 class CarSharingAppTests {
-
-  /*  @Test
+    @Test
     void contextLoads() {
-    }*/
-
+    }
 }

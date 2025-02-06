@@ -1,12 +1,16 @@
 # Car-Sharing-App
 
-## Introduction
+### Introduction
 The Car-Sharing-App is a Java-based web application built using the Spring Boot framework.
 It serves as a comprehensive platform for managing users, cars, user roles, rentals,
 notifications and payments. This project was inspired by the need for an efficient and scalable solution to
 streamline car sharing operations.
 
-## Technologies Used
+### ARCHITECTURE
+
+![chart.png](chart.png)
+
+### Technologies Used
 * **Spring Boot**: Is a powerful framework for building production-grade Java Applications.
 * **Spring Security:** Is a powerful and highly customizable authentication and access-control
   framework.
@@ -21,7 +25,7 @@ streamline car sharing operations.
 * **Stripe:** Payment system.
 * **Telegram Bots:** Framework for building Telegram Bots.
 
-## Functionality
+### Functionality
 * User registration, login, and role-based authorization allows different user levels to have
   appropriate access and capabilities within the service.
 * Multiple endpoints with user and admin access enables different functionalities and
@@ -105,6 +109,76 @@ streamline car sharing operations.
   - Notifications about new rentals created, overdue rentals, and successful payments
   - Other services interact with it to send notifications to car sharing carsharingapp.service administrators.
   - Uses Telegram API, Telegram Chat, and Bot.
+
+### Setup Instructions
+#### Local Setup
+
+- **Clone the Repository:**
+Clone the repository onto your local machine.
+
+- **Stripe Test Account:**
+Sign up for a free Stripe test account at Stripe Dashboard and obtain your STRIPE_SECRET_KEY.
+
+- **Telegram Bot:**
+Create a custom Telegram Bot via BotFather in Telegram. Retrieve the TELEGRAM_BOT_TOKEN and TELEGRAM_CHAT_ID. 
+- After obtaining your token, try pasting this string into your browser:
+
+- **https://api.telegram.org/bot<YOUR_BOT_TOKEN>/getMe** and you can get "id":xxxxxxxxxx
+  TELEGRAM_CHAT_ID = xxxxxxxxxx
+
+- **MySQL Credentials:**
+Open the file application.properties and set your MySQL username and password.
+
+- **Configure Stripe Properties:**
+Edit the file application.properties by inserting your STRIPE_SECRET_KEY.
+
+- **Configure Telegram Bot Properties:**
+Modify the file application.properties with your TELEGRAM_BOT_TOKEN and TELEGRAM_CHAT_ID.
+
+- **Build and Run:**
+Compile and run the project on your local machine.
+
+#### Docker Setup
+
+- **Install Docker:**
+Make sure Docker Desktop is installed on your system.
+
+- **Configure Environment Variables:**
+Edit the file .env_stub with your credentials: MYSQLDB_USER, MYSQLDB_ROOT_PASSWORD, STRIPE_SECRET_KEY, TELEGRAM_BOT_TOKEN, and TELEGRAM_CHAT_ID.
+Rename this file to .env.
+
+- **Build the Project:**
+Compile the project.
+
+- **Start Docker:**
+Launch Docker Desktop and then, in your project directory, run the command:
+**docker compose up**
+
+#### API Documentation and Authentication
+
+- **Swagger Documentation:**
+Access the Swagger UI at http://localhost:8087/swagger-ui/index.html.
+
+- **JWT Authentication:**
+The API uses JWT for authentication. To access protected endpoints, first register and log in to receive a JWT token. Include this token in the Authorization header of subsequent API requests.
+
+#### Default User Accounts
+
+After the first launch, the application automatically registers two user accounts. You can log in using any of these accounts:
+```json
+  [{
+    "email": "admin@com.net",
+    "password": "1234",
+    "firstName": "Admin",
+    "lastName": "Admin"
+  },
+  {
+    "email": "alice@com.net",
+    "password": "1234",
+    "firstName": "Alice",
+    "lastName": "Alice"
+  }]
+```
 
 ### Conclusion
 Car-Sharing-App is an innovative RESTful web application tailored to address car rental needs.

@@ -121,7 +121,7 @@ class RentalControllerTest {
     void createRental_ValidRequest_CreateRental() throws Exception {
         //Given
         RentalRequestDto requestDto = new RentalRequestDto(
-                LocalDate.parse("2025-02-04"),
+                LocalDate.parse("2025-02-06"),
                 LocalDate.parse("2025-05-27"),
                 1L,
                 3L);

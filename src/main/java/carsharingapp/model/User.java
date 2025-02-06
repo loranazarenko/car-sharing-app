@@ -11,6 +11,7 @@ import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.Set;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -45,7 +46,7 @@ public class User implements UserDetails {
     private boolean isDeleted;
     @Column(name = "telegram_chat_id")
     private Long telegramChatId;
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.LAZY)
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
     @JoinTable(
@@ -53,7 +54,7 @@ public class User implements UserDetails {
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id")
     )
-    private Set<Role> roles;
+    private Set<Role> roles = new HashSet<>();
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

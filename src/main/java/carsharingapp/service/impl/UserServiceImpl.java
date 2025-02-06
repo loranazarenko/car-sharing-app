@@ -40,11 +40,8 @@ public class UserServiceImpl implements UserService {
         String encodedPassword = passwordEncoder.encode(user.getPassword());
         user.setPassword(encodedPassword);
 
-        Role role = roleRepository.findByRoleName(Role.RoleName.ROLE_CUSTOMER);
+        Role role = roleRepository.findByName(Role.RoleName.ROLE_CUSTOMER);
         Set<Role> roles = user.getRoles();
-        if (roles == null) {
-            roles = new HashSet<>();
-        }
         roles.add(role);
         user.setRoles(roles);
         userRepository.save(user);
@@ -94,9 +91,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public User getCurrentUser() {
         String token = jwtUtil.getToken();
-        System.out.println("Checking token " + token);
         String username = jwtUtil.getUsername(token);
-        System.out.println("Checking username " + username);
         return (User) userDetailsService.loadUserByUsername(username);
     }
 
