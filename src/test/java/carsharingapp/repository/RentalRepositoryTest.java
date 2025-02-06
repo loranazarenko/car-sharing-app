@@ -16,7 +16,6 @@ import org.springframework.test.context.jdbc.Sql;
 
 @Sql(scripts = {
         "classpath:db/insert-users-to-users_table.sql",
-        "classpath:db/insert-cars-to-cars_table.sql",
         "classpath:db/insert-rentals-to-rentals_table.sql"
 }, executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
 @Sql(scripts = {
