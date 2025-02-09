@@ -114,7 +114,7 @@ streamline car sharing operations.
 #### Local Setup
 
 - **Clone the Repository:**
-Clone the repository onto your local machine.
+Clone the repository "https://github.com/loranazarenko/car-sharing-app" onto your local machine.
 
 - **Stripe Test Account:**
 Sign up for a free Stripe test account at Stripe Dashboard and obtain your STRIPE_SECRET_KEY.

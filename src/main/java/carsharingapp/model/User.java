@@ -46,7 +46,7 @@ public class User implements UserDetails {
     private boolean isDeleted;
     @Column(name = "telegram_chat_id")
     private Long telegramChatId;
-    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToMany
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
     @JoinTable(

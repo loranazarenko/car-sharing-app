@@ -74,7 +74,7 @@ public class JwtUtil {
         String bearerToken =
                 request != null ? request.getHeader(HttpHeaders.AUTHORIZATION) : null;
         if (StringUtils.hasText(bearerToken)
-                && bearerToken.startsWith("Bearer ")) {
+                && bearerToken.startsWith(BEARER)) {
             return bearerToken.substring(BEARER.length());
         }
         return null;
