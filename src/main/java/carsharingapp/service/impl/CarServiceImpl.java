@@ -56,7 +56,7 @@ public class CarServiceImpl implements CarService {
         carRepository.deleteById(id);
     }
 
-    private static void checkIfCarTypeIsValid(String carType) {
+    private void checkIfCarTypeIsValid(String carType) {
         boolean isValidType = Arrays.stream(Car.Type.values())
                 .anyMatch(type -> type.name().equalsIgnoreCase(carType));
 

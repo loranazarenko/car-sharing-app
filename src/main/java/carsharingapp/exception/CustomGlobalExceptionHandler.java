@@ -19,51 +19,6 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 
 @ControllerAdvice
 public class CustomGlobalExceptionHandler extends ResponseEntityExceptionHandler {
-    @Override
-    protected ResponseEntity<Object> handleMethodArgumentNotValid(
-            MethodArgumentNotValidException ex,
-            HttpHeaders headers,
-            HttpStatusCode status,
-            WebRequest request
-    ) {
-        Map<String, Object> body = new LinkedHashMap<>();
-        body.put("timestamp", LocalDateTime.now());
-        body.put("status", HttpStatus.BAD_REQUEST);
-        List<String> errors = ex.getBindingResult().getAllErrors().stream()
-                .map(this::getErrorMessage)
-                .toList();
-        body.put("errors", errors);
-        return new ResponseEntity<>(body, headers, status);
-    }
-
-    private String getErrorMessage(ObjectError objectError) {
-        String defaultMessage = objectError.getDefaultMessage();
-        if (objectError instanceof FieldError) {
-            String field = ((FieldError) objectError).getField();
-            return field + " " + defaultMessage;
-        }
-        return defaultMessage;
-    }
-
-    @ExceptionHandler(RegistrationException.class)
-    protected ResponseEntity<Object> handleRegistrationException(RegistrationException e) {
-        Map<String, Object> body = new LinkedHashMap<>();
-        body.put("message", e.getMessage());
-        body.put("timestamp", LocalDateTime.now());
-        return ResponseEntity
-                .status(HttpStatus.CONFLICT)
-                .body(body);
-    }
-
-    @ExceptionHandler(IllegalArgumentException.class)
-    protected ResponseEntity<Object> handleIllegalArgumentException(IllegalArgumentException e) {
-        Map<String, Object> body = new LinkedHashMap<>();
-        body.put("message", e.getMessage());
-        body.put("timestamp", LocalDateTime.now());
-        return ResponseEntity
-                .status(HttpStatus.BAD_REQUEST)
-                .body(body);
-    }
 
     @ExceptionHandler(RentalException.class)
     public ResponseEntity<Object> handleClosedRentalException(RentalException ex) {
@@ -128,5 +83,51 @@ public class CustomGlobalExceptionHandler extends ResponseEntityExceptionHandler
         body.put("status", HttpStatus.BAD_REQUEST);
         body.put("errors", ex.getMessage());
         return new ResponseEntity<>(body, HttpStatus.BAD_REQUEST);
+    }
+
+    @Override
+    protected ResponseEntity<Object> handleMethodArgumentNotValid(
+            MethodArgumentNotValidException ex,
+            HttpHeaders headers,
+            HttpStatusCode status,
+            WebRequest request
+    ) {
+        Map<String, Object> body = new LinkedHashMap<>();
+        body.put("timestamp", LocalDateTime.now());
+        body.put("status", HttpStatus.BAD_REQUEST);
+        List<String> errors = ex.getBindingResult().getAllErrors().stream()
+                .map(this::getErrorMessage)
+                .toList();
+        body.put("errors", errors);
+        return new ResponseEntity<>(body, headers, status);
+    }
+
+    @ExceptionHandler(RegistrationException.class)
+    protected ResponseEntity<Object> handleRegistrationException(RegistrationException e) {
+        Map<String, Object> body = new LinkedHashMap<>();
+        body.put("message", e.getMessage());
+        body.put("timestamp", LocalDateTime.now());
+        return ResponseEntity
+                .status(HttpStatus.CONFLICT)
+                .body(body);
+    }
+
+    @ExceptionHandler(IllegalArgumentException.class)
+    protected ResponseEntity<Object> handleIllegalArgumentException(IllegalArgumentException e) {
+        Map<String, Object> body = new LinkedHashMap<>();
+        body.put("message", e.getMessage());
+        body.put("timestamp", LocalDateTime.now());
+        return ResponseEntity
+                .status(HttpStatus.BAD_REQUEST)
+                .body(body);
+    }
+
+    private String getErrorMessage(ObjectError objectError) {
+        String defaultMessage = objectError.getDefaultMessage();
+        if (objectError instanceof FieldError) {
+            String field = ((FieldError) objectError).getField();
+            return field + " " + defaultMessage;
+        }
+        return defaultMessage;
     }
 }

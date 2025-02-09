@@ -135,7 +135,7 @@ public class RentalServiceImpl implements RentalService {
                 .setCar(car);
     }
 
-    private static void checkIsCarAvailable(Car car) {
+    private void checkIsCarAvailable(Car car) {
         if (car.getInventory() == 0) {
             throw new CarAvailableException("Sorry, car with id "
                     + car.getId() + " is not available for the rent. Please take another one."

@@ -11,6 +11,7 @@ import java.security.Key;
 import java.util.Date;
 import java.util.function.Function;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 import org.springframework.web.context.request.RequestContextHolder;
@@ -18,6 +19,7 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 
 @Component
 public class JwtUtil {
+    private static final String BEARER = "Bearer ";
     private final Key secret;
     @Value("${jwt.expiration}")
     private long expiration;
@@ -70,10 +72,10 @@ public class JwtUtil {
                     .getRequest();
         }
         String bearerToken =
-                request != null ? request.getHeader("Authorization") : null;
+                request != null ? request.getHeader(HttpHeaders.AUTHORIZATION) : null;
         if (StringUtils.hasText(bearerToken)
-                && bearerToken.startsWith("Bearer ")) {
-            return bearerToken.substring(7);
+                && bearerToken.startsWith(BEARER)) {
+            return bearerToken.substring(BEARER.length());
         }
         return null;
     }

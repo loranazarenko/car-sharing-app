@@ -97,7 +97,6 @@ public class PaymentServiceImpl implements PaymentService {
     }
 
     private void checkUserIsRentalOwner(Rental rental) {
-        System.out.println("Checking rental owner for rental: {}" + rental.getUser());
         User user = userService.getCurrentUser();
         if (!rental.getUser().getId().equals(user.getId())) {
             throw new PaidPaymentException("You can't pay for other users' rentals");
