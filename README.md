@@ -1,7 +1,7 @@
-# Car-Sharing-App
+# Auto Share Hub
 
 ## Introduction
-The Car-Sharing-App is a Java-based web application built using the Spring Boot framework.
+The Auto Share Hub is a Java-based web application built using the Spring Boot framework.
 It serves as a comprehensive platform for managing users, cars, user roles, rentals,
 notifications and payments. This project was inspired by the need for an efficient and scalable solution to
 streamline car sharing operations.
